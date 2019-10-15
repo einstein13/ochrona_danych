@@ -31,15 +31,16 @@ def get_input(prompt='', typ='lowercase', kwargs={}):
             return result
     return ""
 
-def find_value_input(user_prompt, allowed_values, argument_position):
+def find_value_input(user_prompt, value_type, allowed_values, argument_position):
     if len(argv) >= argument_position:
-        try:
-            result = int(argv[argument_position])
-            if result in allowed_values:
-                return result
-        except Exception as e:
-            print(e)
-            pass
-    result = get_input(user_prompt, typ='integer',
+        result = argv[argument_position]
+        if value_type == 'integer':
+            try:
+                result = int(result)
+            except Exception as e:
+                pass
+        if result in allowed_values:
+            return result
+    result = get_input(user_prompt, typ=value_type,
         kwargs={'min': min(allowed_values), 'max': max(allowed_values)})
     return result
