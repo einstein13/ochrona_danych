@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from 
+from commons import get_input
 
 # za:
 # https://pl.wikipedia.org/wiki/Alfabet_polski#Cz%C4%99sto%C5%9B%C4%87_wyst%C4%99powania_liter
@@ -49,22 +49,5 @@ def substitute_letters(text, dictionary):
             result += char
     return result
 
-def get_sign(prompt='', typ='lowercase'):
-    while True:
-        result = input(prompt)
-        if typ == 'lowercase':
-            if len(result) != 1:
-                continue
-            if not result.islower():
-                continue
-            if result.isdigit():
-                continue
-            return result
-        if typ == 'digit':
-            if len(result) != 1:
-                continue
-            if not result.isdigit():
-                continue
-            return result
-    return ""
+
 
