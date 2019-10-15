@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 
-def get_sign(prompt='', typ='lowercase', kwargs={}):
+def get_input(prompt='', typ='lowercase', kwargs={}):
     while True:
-        result = input(prompt)
+        result = input(prompt+": ")
         if typ == 'lowercase':
             if len(result) != 1:
                 continue
@@ -24,7 +24,8 @@ def get_sign(prompt='', typ='lowercase', kwargs={}):
             result = int(result)
             if 'min' in kwargs and result < kwargs['min']:
                 continue
-            if 'max' in kwargs and result < kwargs['max']:
+            if 'max' in kwargs and result > kwargs['max']:
+                continue
             return result
     return ""
 
