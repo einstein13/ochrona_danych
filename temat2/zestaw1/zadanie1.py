@@ -63,10 +63,11 @@ def text_frequency(text):
     for char in all_letters:
         total += result[char]
     # make occurances to frequences
+    frequency = []
     for char in all_letters:
-        result[char] /= total
+        frequency.append([char, result[char]/total])
     # return result
-    return result
+    return frequency
 
 def initialize(data):
     data['input'] = read_file("kryptogram.txt")
@@ -110,6 +111,7 @@ def show_dictionary(dicionary, headers=None):
     print_table(table)
     return
 
+
 def main():
     data = {}
     initialize(data)
@@ -137,10 +139,21 @@ def main():
             show_dictionary(data['dictionary'], ["klucz", "wartość"])
         elif command == 6:
             frequency = text_frequency(data['input'])
-            show_dictionary(frequency, ["litera", "częstość"])
+            frequency = [["litera", "częstość"]] + frequency
+            print_table(frequency)
         elif command == 7:
             frequency = [["litera", "częstość"]] + letters_frequency
             print_table(frequency)
+        elif command == 8:
+            table1 = list(letters_frequency)
+            table1.sort(key=lambda x: -x[1])
+            table2 = text_frequency(data['input'])
+            table2.sort(key=lambda x: -x[1])
+            print(len(table1))
+            print(len(table2))
+            merged = merge_tables(table1, table2)
+            merged = [["język", "język", "tekst", "tekst"]] + merged
+            print_table(merged)
         else:
             print("* * * Funkcja nie istnieje * * *")
     return

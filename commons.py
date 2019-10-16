@@ -94,6 +94,14 @@ def value_to_string(value, short=False):
         return "%.4g" % value
     return str(value)
 
+def merge_tables(table1, table2):
+    if len(table1) != len(table2):
+        return []
+    result = []
+    for itr in range(len(table1)):
+        result.append(table1[itr] + table2[itr])
+    return result
+
 def transpose(table):
     result = []
     for itr1 in range(len(table[0])):
