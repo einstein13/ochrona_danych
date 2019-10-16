@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 from importlib import import_module
+from os import chdir
 
 from commons import find_value_input
 from tasks import allowed_tasks
@@ -18,7 +19,8 @@ values = (value1, value2, value3)
 print("Temat: %d, Zestaw: %d, Zadanie %d:" % values)
 
 try:
+    chdir("./temat%d/zestaw%d/" % (value1, value2))
     import_module("temat%d.zestaw%d.zadanie%d" % values)
 except Exception as e:
-    print("Nie udało się załadować zadania!")
+    print("Coś poszło nie tak...")
     print(e)
