@@ -56,6 +56,12 @@ def read_file(name):
     file.close()
     return content
 
+def write_file(data, name):
+    file = open(name, "w")
+    file.write(str(data))
+    file.close()
+    return
+
 def print_long_text(long_text, lines_number=None):
     signs_per_line = get_terminal_size().columns - 1
     lines_max = len(long_text) // signs_per_line

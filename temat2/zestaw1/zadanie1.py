@@ -128,6 +128,7 @@ def show_help():
     print("  8 - porównanie częstości w tekście oraz w języku polskim")
     print("  9 - autodopasowanie słownika (na podstawie częstości znaków)")
     print("  10 - ustalenie pojedynczego znaku w słowniku")
+    print("  11 - usunięcie mapowania")
     print(" ")
     return
 
@@ -195,9 +196,14 @@ def main():
         elif command == 10:
             char1 = get_input("Znak zakodowany", "lowercase")
             char2 = get_input("Znak rozkodowany", "lowercase")
+            if char2.upper() in list(data['dictionary'].values()):
+                print("UWAGA! Istnieje konflikt zakodowanego znaku.")
             data['dictionary'][char1] = char2.upper()
+        elif command == 11:
+            data['dictionary'] = {}
         else:
             print("* * * Funkcja nie istnieje * * *")
+    if 'output' in data:
+        return data['output'].lower()
     return
 
-main()
