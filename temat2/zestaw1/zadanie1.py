@@ -78,6 +78,40 @@ def decode(data):
     data['output'] = substitute_letters(data['input'], data['dictionary'])
     return
 
+def automerge_keys(input_frequency, target_frequency, dictionary):
+    itr1 = 0
+    itr2 = 0
+    itr1_max = len(input_frequency)
+    itr2_max = len(target_frequency)
+
+    input_used = []
+    target_used = []
+    new_dictionary = {}
+    for key in dictionary.keys():
+        if dictionary[key].isupper():
+            target_used.append(dictionary[key].lower())
+            input_used.append(key)
+            new_dictionary[key] = dictionary[key]
+
+    while itr1 < itr1_max:
+        input_key = input_frequency[itr1][0]
+        if input_key in input_used:
+            itr1 += 1
+            continue
+
+        target_key = ""
+        while itr2 < itr2_max:
+            target_key = target_frequency[itr2][0]
+            itr2 += 1
+            if target_key not in target_used:
+                break
+        if target_key == "":
+            break
+
+        new_dictionary[input_key] = target_key
+        itr1 += 1
+    return new_dictionary
+
 def show_help():
     print(" ")
     print("Witaj w programie wspomagającym rozkodowywanie tekstu.")
@@ -110,7 +144,6 @@ def show_dictionary(dicionary, headers=None):
         table = [headers] + table
     print_table(table)
     return
-
 
 def main():
     data = {}
@@ -149,11 +182,20 @@ def main():
             table1.sort(key=lambda x: -x[1])
             table2 = text_frequency(data['input'])
             table2.sort(key=lambda x: -x[1])
-            print(len(table1))
-            print(len(table2))
             merged = merge_tables(table1, table2)
             merged = [["język", "język", "tekst", "tekst"]] + merged
             print_table(merged)
+        elif command == 9:
+            table1 = list(letters_frequency)
+            table1.sort(key=lambda x: -x[1])
+            table2 = text_frequency(data['input'])
+            table2.sort(key=lambda x: -x[1])
+            data['dictionary'] = automerge_keys(table2, table1, data['dictionary'])
+            show_dictionary(data['dictionary'], ["klucz", "wartość"])
+        elif command == 10:
+            char1 = get_input("Znak zakodowany", "lowercase")
+            char2 = get_input("Znak rozkodowany", "lowercase")
+            data['dictionary'][char1] = char2.upper()
         else:
             print("* * * Funkcja nie istnieje * * *")
     return
