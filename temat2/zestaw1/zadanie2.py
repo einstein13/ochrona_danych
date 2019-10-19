@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from commons import *
 from json import dumps, loads
 from random import choice, shuffle

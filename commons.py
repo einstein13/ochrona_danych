@@ -14,14 +14,14 @@ def get_input(prompt='', typ='lowercase', kwargs={}):
             if result.isdigit():
                 continue
             return result
-        if typ == 'digit':
+        elif typ == 'digit':
             if len(result) != 1:
                 continue
             if not result.isdigit():
                 continue
             result = int(result)
             return result
-        if typ == 'integer':
+        elif typ == 'integer':
             if not result.isdigit():
                 continue
             result = int(result)
@@ -30,10 +30,12 @@ def get_input(prompt='', typ='lowercase', kwargs={}):
             if 'max' in kwargs and result > kwargs['max']:
                 continue
             return result
+        elif typ == "string":
+            return result
     return ""
 
 def find_value_input(user_prompt, value_type, allowed_values=[], argument_position=None):
-    if argument_position and len(argv) >= argument_position:
+    if argument_position and len(argv) > argument_position:
         result = argv[argument_position]
         if value_type == 'integer':
             try:
@@ -115,6 +117,13 @@ def transpose(table):
         for itr2 in range(len(table)):
             result[itr1].append(table[itr2][itr1])
     return result
+
+def find_in_matrix(element, table):
+    for itr1 in range(len(table)):
+        for itr2 in range(len(table[itr1])):
+            if element == table[itr1][itr2]:
+                return [itr1, itr2]
+    return [-1, -1]
 
 def print_table(table_data):
     if len(table_data) == 0:
