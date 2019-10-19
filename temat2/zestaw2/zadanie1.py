@@ -12,8 +12,8 @@ letters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', '
 def encode(data):
     result = ""
     for char in data['input']:
-        position = letters.index(char)
-        if position > -1:
+        if char in letters:
+            position = letters.index(char)
             position += data['shift']
             position = position % len(letters)
             result += letters[position]

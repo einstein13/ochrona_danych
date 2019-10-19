@@ -44,8 +44,8 @@ def encode_message(data):
     itr_max = len(text)
     keys_max = len(data['chars'])
     while itr < itr_max:
-        position = data['chars'].index(text[itr])
-        if position > -1:
+        if text[itr] in data['chars']:
+            position = data['chars'].index(text[itr])
             position += itr
             position = position % keys_max
             encoded += data['keys'][position]
@@ -63,8 +63,8 @@ def decode_message(data):
     keys_max = len(data['chars'])
     while itr < itr_max:
         to_decode = text[2*itr: 2*itr+2]
-        position = data['keys'].index(to_decode)
-        if position > -1:
+        if to_decode in data['keys']:
+            position = data['keys'].index(to_decode)
             position -= itr
             position = position % keys_max
             decoded += data['chars'][position]

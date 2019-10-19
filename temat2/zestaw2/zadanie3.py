@@ -5,6 +5,9 @@ from commons import *
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o',
         'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+# sugestia: użyj funkcji find_in_matrix z pliku commons.py (jest już dostępna)
+# pozwala ona znaleźć pozycję elementu w formie [X, Y] z 2-wymiarowej tabeli
+
 def encode(data):
     result = ""
     # JAK ZAKODOWAĆ TEKST?
