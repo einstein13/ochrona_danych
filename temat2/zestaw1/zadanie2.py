@@ -54,7 +54,26 @@ def encode_message(data):
     return encoded
 
 def decode_message(data):
-    return
+    text = data['input']
+    decoded = ""
+    itr = 0
+    itr_max = len(text)//2
+    keys_max = len(data['chars'])
+    while itr < itr_max:
+        to_decode = text[2*itr: 2*itr+2]
+        position = data['keys'].index(to_decode)
+        if position > -1:
+            position -= itr
+            position = position % keys_max
+            decoded += data['chars'][position]
+        else:
+            if to_decode[0] == to_decode[1]:
+                decoded += to_decode[0]
+            else:
+                print("Nie udało mi się przetłumaczyć [%s]" % to_decode)
+        itr += 1
+    data['output'] = decoded
+    return decoded
 
 def main():
     data = {}
