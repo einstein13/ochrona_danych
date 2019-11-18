@@ -1,29 +1,40 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 from commons import *
 
-letters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K',
-        'L', 'Ł', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U',
-        'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż', 'a', 'ą', 'b', 'c', 'ć', 'd', 'e',
-        'ę', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'o', 'ó',
-        'p', 'q', 'r', 's', 'ś', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ź', 'ż',
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
+def generateKey(data): 
+    key = list(data['key']) 
+    
+    if len(data['plain_text']) == len(key): 
+        return(key) 
+    else: 
+        for i in range(len(data['plain_text']) - 
+            len(key)): 
+            key.append(key[i % len(key)]) 
+    return("" . join(key)) 
+    
 def encode(data):
-    result = ""
-    # JAK ZAKODOWAĆ TEKST?
-    data['output'] = result
-    return result
+    key = data['generateKey']
+    plaintext = data['plain_text']
+    ciphertext = []
+    
+    for i in range(len(plaintext)): 
+        x = (ord(plaintext[i]) + 
+             ord(key[i])) % 26
+        x += ord('A') 
+        ciphertext.append(chr(x)) 
+    return("" . join(ciphertext)) 
 
 def decode(data):
     result = ""
     # JAK ROZKODOWAĆ TEKST?
+    
     data['output'] = result
     return result
 
 def initialize(data):
     data['output'] = ""
-    data['input'] = read_file("input2.txt")
+    data['plain_text'] = read_file("input1.txt")
 
 def main():
     data = {}
@@ -35,7 +46,9 @@ def main():
     command = find_value_input("Zakoduj: 1 / Rozkoduj: 2", "integer",
         allowed_values=[1, 2])
     if command == 1:
-        encode(data)
+        data['generateKey'] = generateKey(data)
+        print('Tekst jawny:         ' + data['plain_text'])
+        print('Tekst zaszyfrowany:  ' + encode(data))
     elif command == 2:
         decode(data)
 

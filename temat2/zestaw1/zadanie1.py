@@ -150,7 +150,7 @@ def main():
     data = {}
     initialize(data)
 
-    print("0 - wyjście, 1 - pomoc")
+    print("0 - wyjście, 1 - lista dostępnych funkcji")
 
     while True:
         command = find_value_input("\nPodaj numer funkcji", "integer")

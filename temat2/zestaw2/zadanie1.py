@@ -24,22 +24,24 @@ def encode(data):
 
 def decode(data):
     data['shift'] = (-data['shift']) % len(letters)
-    return encode(data)
+    return decode(data)
 
 def initialize(data):
     data['output'] = ""
-    data['input'] = read_file("input1.txt")
+    data['input'] = read_file("input2.txt")
 
 def main():
     data = {}
     initialize(data)
-    data['shift'] = find_value_input("Podaj wartość kluczu (przesunięcia)",
+    data['shift'] = find_value_input("Szyfr Cezara - Podaj wartość klucza (przesunięcia)",
         "integer", allowed_values=list(range(len(letters))))
     command = find_value_input("Zakoduj: 1 / Rozkoduj: 2", "integer",
         allowed_values=[1, 2])
     if command == 1:
+        print("Zaszyfrowany teskst to:  ")
         encode(data)
     elif command == 2:
+        print("Rozszyfrowany teskst to:  ")
         decode(data)
 
     return data['output']
