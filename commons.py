@@ -45,7 +45,10 @@ def find_value_input(user_prompt, value_type, allowed_values=[], argument_positi
         if result in allowed_values:
             return result
     if allowed_values:
-        kwargs = {'min': min(allowed_values), 'max': max(allowed_values)}
+        if 'comment' in allowed_values:
+            print("\n" + allowed_values['comment'])
+            allowed_values.pop('comment')
+        kwargs = {'min': min(list(allowed_values)), 'max': max(list(allowed_values))}
         result = get_input(user_prompt, typ=value_type,
             kwargs=kwargs)
     else:
