@@ -24,7 +24,7 @@ try:
     result = module.main()
     if result:
         write_file(result, "output%d.txt" % value3)
-        print("\n" + result + "\n")
+        # print("\n" + result + "\n")
 
 except Exception as e:
     print("Coś poszło nie tak...")
