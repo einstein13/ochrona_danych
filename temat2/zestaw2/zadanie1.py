@@ -38,10 +38,8 @@ def main():
     command = find_value_input("Zakoduj: 1 / Rozkoduj: 2", "integer",
         allowed_values=[1, 2])
     if command == 1:
-        print("Zaszyfrowany teskst to:  ")
         encode(data)
     elif command == 2:
-        print("Rozszyfrowany teskst to:  ")
         decode(data)
 
     return data['output']
