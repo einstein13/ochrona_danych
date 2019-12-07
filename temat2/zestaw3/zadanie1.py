@@ -6,8 +6,6 @@ from random import randint
 from commons import *
 
 def initialize(data):
-    data['output'] = ""
-    data['input'] = ""
     data['options'] = loads(read_file("options1.json"))
     if 'randMax' not in data['options']:
         data['options']['randMax'] = 10**9
