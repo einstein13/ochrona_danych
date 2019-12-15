@@ -29,62 +29,53 @@ def pesel_sex(data):
 def pesel_chksum(data):
     value1 = data['input_string'][0]
     value1 = int(value1)
-
     value2 = data['input_string'][1]
     value2 = int(value2)
-
     value3 = data['input_string'][2]
     value3 = int(value3)
-
     value4 = data['input_string'][3]
     value4 = int(value4)
-
     value5 = data['input_string'][4]
     value5 = int(value5)
-
     value6 = data['input_string'][5]
     value6 = int(value6)
-
     value7 = data['input_string'][6]
     value7 = int(value7)
-
     value8 = data['input_string'][7]
     value8 = int(value8)
-
     value9 = data['input_string'][8]
     value9 = int(value9)
 
     value10 = data['input_string'][9]
     value10 = int(value10)
 
-    value10 = data['input_string'][10]
-    value10 = int(value10)
+    value11 = data['input_string'][10]
+    value11 = int(value11)
 
 
-
-    # print (value1)
-    # print (value2)
-    # print (value3)
-    # print (value4)
-    # print (value10)
-
-    suma = (1*(value1)) + (3*(value2)) + (7*(value3)) + (9*(value4)) + (1*(value5)) + (3*(value6)) + (7*(value7)) + (9*(value8)) + (1*(value9)) + (3*(value10))
+    suma = (9*(value1)) + (7*(value2)) + (3*(value3)) + (1*(value4)) + (9*(value5)) + (7*(value6)) + (3*(value7)) + (1*(value8)) + (9*(value9)) + (7*(value10))
     suma = int(suma)
-    print (suma)
+    # print (suma)
+    # print (value11)
 
-    kontrolka=10-(suma %10)
-    print (kontrolka)
+    mod = suma % 10
+    # print (mod)
 
-    if kontrolka== 10:
-        kontrolka= 0
+    if mod == value11:
+         return "OK"
     else:
-        kontrolka=kontrolka
+         return "FAIL"
+
+    #  kontrolka=10-(suma %10)
+    # print (kontrolka)
+
+
  
     #kontrolka i sprawdzenie zgodnosci
-    if ((kontrolka== 10)or(kontrolka== 0)):
-        return 0
-    else:
-        return 1
+    # if ((kontrolka== 10)or(kontrolka== 0)):
+    #     return 0
+    # else:
+    #     return 1
  
     
 
