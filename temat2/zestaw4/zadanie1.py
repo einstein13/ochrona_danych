@@ -14,10 +14,7 @@ def validate_pesel(data):
 
     input_number = int(input_string)
 
-    # TUTAJ DODAJ SPRAWDZANIE POPRAWNOŚCI ze względu na cyfrę kontrolną!
-
-    return True
-
+    return pesel_chksum(data) == "OK"
 
 def pesel_sex(data):
     value = data['input_string'][9]
@@ -55,45 +52,21 @@ def pesel_chksum(data):
 
     suma = (9*(value1)) + (7*(value2)) + (3*(value3)) + (1*(value4)) + (9*(value5)) + (7*(value6)) + (3*(value7)) + (1*(value8)) + (9*(value9)) + (7*(value10))
     suma = int(suma)
-    # print (suma)
-    # print (value11)
 
     mod = suma % 10
-    # print (mod)
 
     if mod == value11:
-         return "OK"
-    else:
-         return "FAIL"
-
-    #  kontrolka=10-(suma %10)
-    # print (kontrolka)
-
-
- 
-    #kontrolka i sprawdzenie zgodnosci
-    # if ((kontrolka== 10)or(kontrolka== 0)):
-    #     return 0
-    # else:
-    #     return 1
- 
-    
-
-    # if (kontrolka==10) or (data==kontrolka): #w przypadku liczby kontrolnej 10 i 0 sa jednoznaczne a 0 moze byc wynikiem odejmowania
-    #     return "DUPA" ##domyslana wartosc logczna dla ifa klasy roboczej
-    # else:
-    #     return "SUMA" ##domyslna wartosc logiczna dla elsa
-
-
+        return "OK"
+    return "FAIL"
 
 def main():
     data = {}
     initialize(data)
 
-    print("Podanie numeru \"0\" oznacza zakończenie programu.\n")
+    print("Podanie numeru \"0\" oznacza zakończenie programu.")
     number = ""
     while number != "0":
-        number = find_value_input("Podaj numer PESEL", "string")
+        number = find_value_input("\nPodaj numer PESEL", "string")
         if number == "0":
             break
         data['input_string'] = number
@@ -103,12 +76,8 @@ def main():
         if validated:
             print("Podany numer PESEL jest poprawny")
             print("Osoba z podanym numerem PESEL to %s" % pesel_sex(data))
-            print("Suma kontrolna %s" % pesel_chksum(data))
         
         else:
             print("Numer PESEL jest niepoprawny")
-
-
-
 
     return ""
