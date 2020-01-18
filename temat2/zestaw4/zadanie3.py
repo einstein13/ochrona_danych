@@ -22,6 +22,7 @@ def transform_text_to_value(data):
         result *= find_base_power(value)
         result += value
     data['input_value'] = result
+    print(result)
     return result
 
 def log2(value):
@@ -52,6 +53,7 @@ def crc(data):
     itr = data['crc_steps']
     divisor = data['crc_divisor']
     value = data['crc_input']
+    debug=True
 
     pattern = "%d"
     while itr > 0:

@@ -62,7 +62,7 @@ def decrypt(data):
 
     values = []
     for new_value in glued:
-        values.append(new_value // 1000)
+        values.append((new_value // 1000) % 1000)
         values.append(new_value % 1000)
     if values[-1] == 0:
         values.pop(-1)
@@ -102,7 +102,7 @@ def initialize(data):
     data['e'] = e
     data['n'] = n
 
-    data['debug'] = False
+    data['debug'] = True
     return True
 
 def main():
